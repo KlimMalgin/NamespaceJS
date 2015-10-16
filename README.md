@@ -65,3 +65,5 @@ Root.ns('modules').each(function (module) {
     module.startup();
 });
 ```
+
+The MIT License (MIT)
