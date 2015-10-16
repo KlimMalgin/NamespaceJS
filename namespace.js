@@ -1,5 +1,38 @@
 
 
+
+(function (global) {
+    
+    // Инициализатор
+    /**
+     * Create root namespace with baseNamespase name or App name by default. 
+     */
+    global.NamespaceInit = function (baseNamespase) {
+        baseNamespase = baseNamespase || 'App';
+        global[baseNamespase] = new Namespace();
+        delete global.NamespaceInit;
+    };
+    
+    
+    
+    
+})(this);
+
+/*
+ Как это должно работать.
+ 
+ На старте приложения делаем:
+ 
+ [global].App = {};
+ 
+ // Поставляется из Namespace-обертки. Через нее можно указать имя переменной, которая будет корнем неймспейсов приложения
+ NamespaceInit('App')
+ 
+ 
+ 
+*/
+
+
 /**
  * Модуль для работы с неймспейсами прибожения
  */
