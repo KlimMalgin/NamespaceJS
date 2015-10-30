@@ -69,7 +69,8 @@
     }
     
     /**
-     * Метод для удобного создания неймспейсов. Создаст неймспейс и установит для него значение, если оно было указано
+     * Метод для удобного создания неймспейсов. Создаст неймспейс и установит для него указанное значение.
+     * Если значение не указано - вернет значение из неймспейса, либо пустой объект.
      * @example
      *     App.ns('Auth.AuthFormBlock', MyAuthFormBlock);
      *     App.ns('Config');
@@ -79,10 +80,19 @@
      * @for Namespace
      * @chainable
      */
-    Namespace.prototype.ns = function (ns, value) {
-        this.selectPath(ns);
-        value && setValueForSelectedPath(value);
-        return this;
+    Namespace.prototype.ns = function (/*ns, value*/) {
+        // Задан только первый аргумент(path) - вернем значение по указанному path
+        if (arguments.length == 1) {
+            this.selectPath(arguments[0]);
+            return this.get();
+        } else
+        // Задан path и значение для него. Установим это значение и вернем его же.
+        if (arguments.length == 2) {
+            this.selectPath(arguments[0]);
+            value && setValueForSelectedPath(arguments[1]);
+            return this.get();
+        }
+        return {};
     };
     
     /**
