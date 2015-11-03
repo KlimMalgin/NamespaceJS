@@ -17,7 +17,7 @@ Root.ns('modules.tester', {
 
 // ... 
 
-var testerInstance = Root.ns('modules.tester').get();
+var testerInstance = Root.ns('modules.tester');
 
 testerInstance.dbg();   // write '::DEBUG::' to console
 
@@ -61,7 +61,7 @@ File /modules/main.js
 NamespaceInit('Root');
 
 // Initialize all modules in 'Root.modules' namespace
-Root.ns('modules').each(function (module) {
+Root.for('modules').each(function (module) {
     module.startup();
 });
 ```
